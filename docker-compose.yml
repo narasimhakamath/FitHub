@@ -9,3 +9,12 @@ services:
       - ./api-gateway:/home/node/app
     ports:
       - "3000:3000"
+  users-service:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./users-service
+    volumes:
+      - /home/node/app/node_modules
+      - ./users-service:/home/node/app
+    ports:
+      - "3001:3001"
