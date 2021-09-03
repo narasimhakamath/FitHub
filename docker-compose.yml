@@ -1,5 +1,9 @@
 version: '3'
 services:
+  user-mongo:
+    image: mongo:latest
+    ports:
+      - "4017:27017"
   api-gateway:
     build:
       dockerfile: Dockerfile.dev
@@ -17,4 +21,6 @@ services:
       - /home/node/app/node_modules
       - ./users-service:/home/node/app
     ports:
-      - "3001:3001"
+      - "4000:4000"
+    depends_on:
+      - user-mongo

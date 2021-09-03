@@ -1,6 +1,16 @@
 const express = require('express');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
+const mongoose = require('mongoose');
+
+const connectDB = async () => {
+	const connection = await mongoose.connect(`mongodb://user-mongo/users-service`, {useNewUrlParser: true, useUnifiedTopology: true});
+	// console.log(`User Service MongoDB connected to ${connection['connection']['host']}`);
+};
+connectDB();
+
+
+const usersRoute = require('./routes/users');
 
 const app = express();
 
@@ -11,13 +21,15 @@ app.use(morgan('dev'));
 
 
 // Test Route.
-app.use('/', (req, res) => {
-	res.json({status: true, message: `The user service server is working.`});
-});
+// app.use('/', (req, res) => {
+// 	res.json({status: true, message: `The user service server is working.`});
+// });
 
-const PORT = 3001;
+app.use(`/api/users`, usersRoute);
 
-const server = app.listen(PORT, console.log(`API Gateway server running on port: ${PORT}`));
+const PORT = 4000;
+
+const server = app.listen(PORT, console.log(`The user-service is running on port: ${PORT}`));
 
 process.on('unhandledRejection', (error, promise) => {
 	console.log(`Error: ${error['message']}`);
