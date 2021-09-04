@@ -19,12 +19,6 @@ app.use(cookieParser());
 
 app.use(morgan('dev'));
 
-
-// Test Route.
-// app.use('/', (req, res) => {
-// 	res.json({status: true, message: `The user service server is working.`});
-// });
-
 app.use(`/api/users`, usersRoute);
 
 const PORT = 4000;

@@ -11,14 +11,7 @@ app.use(cookieParser());
 
 app.use(morgan('dev'));
 
-
-// Test Route.
-// app.use('/', (req, res) => {
-// 	res.json({status: true, message: `The API gateway server is working.`});
-// });
-
 app.use('/api/v1/user-service', UserServiceRoutes);
-
 
 const PORT = 3000;
 
