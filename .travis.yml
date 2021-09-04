@@ -3,10 +3,10 @@ services:
   - docker
 
 after_success:
-  - docker build -t narasimhakamath/fithub-api-gateway ./client
-  - docker build -t narasimhakamath/fithub-users-service ./nginx
+  - docker build -t narasimhakamath/fithub-api-gateway ./api-gateway
+  - docker build -t narasimhakamath/fithub-users-service ./users-service
 
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
-  - docker push narasimhakamathofficial/fithub-api-gateway
-  - docker push narasimhakamathofficial/fithub-users-service
+  - docker push narasimhakamath/fithub-api-gateway
+  - docker push narasimhakamath/fithub-users-service
