@@ -4,6 +4,8 @@ services:
     image: mongo:latest
     ports:
       - "4017:27017"
+    logging:
+      driver: "none"
   api-gateway:
     build:
       dockerfile: Dockerfile.dev
