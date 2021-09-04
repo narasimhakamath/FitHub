@@ -1,0 +1,12 @@
+sudo: required
+services:
+  - docker
+
+after_success:
+  - docker build -t narasimhakamath/fithub-api-gateway ./client
+  - docker build -t narasimhakamath/fithub-users-service ./nginx
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  - docker push narasimhakamathofficial/fithub-api-gateway
+  - docker push narasimhakamathofficial/fithub-users-service
